@@ -27,6 +27,7 @@ public class Employee {
 	private String employeeName;
 	private String state;
 	private String city;
+	private String mailId;	
 	private String phoneNumber;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employeeId")

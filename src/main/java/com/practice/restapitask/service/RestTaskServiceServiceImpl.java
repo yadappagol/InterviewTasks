@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.practice.restapitask.dto.EmployeeDto;
+import com.practice.restapitask.dto.AddEmployeeDto;
 import com.practice.restapitask.entity.Employee;
 import com.practice.restapitask.repository.EmployeeRepository;
 
@@ -17,7 +17,7 @@ public class RestTaskServiceServiceImpl implements RestTaskService {
 	private EmployeeRepository employeeRepository;
 
 	@Override
-	public Employee addEmployee(EmployeeDto employeeDto) {
+	public Employee addEmployee(AddEmployeeDto employeeDto) {
 		Employee employee = new Employee();
 		BeanUtils.copyProperties(employeeDto, employee);
 		System.out.println(employee);
