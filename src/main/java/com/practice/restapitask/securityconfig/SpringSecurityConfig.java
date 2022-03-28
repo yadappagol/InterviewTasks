@@ -13,7 +13,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("sagar").password("sagar@123").roles("USER");
+		auth.inMemoryAuthentication().withUser("sagar").password("sagar@123").roles("USER").and().withUser("dby")
+				.password("dby123").roles("ADMIN");
 	}
 
 	@Override
@@ -24,8 +25,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers("/api/v1/*").hasRole("USER").and().csrf().disable()
-				.headers().frameOptions().disable();
+		http.httpBasic().and().authorizeRequests().antMatchers("/api/v1/addEmployee").hasRole("USER")
+				.antMatchers("/api/v1/getAllEmployees").hasRole("ADMIN").anyRequest().authenticated().and().csrf()
+				.disable().headers().frameOptions().disable();
 	}
 
 	@Bean
@@ -34,3 +36,4 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
+//http.authorizeRequests().anyRequest().authenticated();
