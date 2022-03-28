@@ -22,7 +22,6 @@ public class RestTaskServiceServiceImpl implements RestTaskService {
 		BeanUtils.copyProperties(employeeDto, employee);
 		System.out.println(employee);
 		Employee save = employeeRepository.save(employee);
-		System.out.println(save);
 		return save;
 	}
 
