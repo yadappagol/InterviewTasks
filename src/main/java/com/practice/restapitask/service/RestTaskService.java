@@ -12,6 +12,8 @@ public interface RestTaskService {
 	Employee getEmployee(Integer empId);
 
 	String removeEmployee(Integer empId);
+	
+	String updateUser(AddEmployeeDto employeeDto);
 
 	List<Employee> getAllEmployee();
 

@@ -20,9 +20,7 @@ public class RestTaskServiceServiceImpl implements RestTaskService {
 	public Employee addEmployee(AddEmployeeDto employeeDto) {
 		Employee employee = new Employee();
 		BeanUtils.copyProperties(employeeDto, employee);
-		System.out.println(employee);
-		Employee save = employeeRepository.save(employee);
-		return save;
+		return employeeRepository.save(employee);
 	}
 
 	@Override
@@ -39,6 +37,14 @@ public class RestTaskServiceServiceImpl implements RestTaskService {
 	@Override
 	public List<Employee> getAllEmployee() {
 		return employeeRepository.findAll();
+	}
+
+	@Override
+	public String updateUser(AddEmployeeDto employeeDto) {
+		Employee employee = employeeRepository.findById(employeeDto.getEmployeeId()).get();
+		BeanUtils.copyProperties(employeeDto, employee);
+		employeeRepository.save(employee);
+		return "Your Employee Details Updated Successfully...";
 	}
 
 }

@@ -12,7 +12,9 @@ public class Message {
 	public static final String ADDED_SUCCESSFULLY = "All Employee Details Added Successfully..";
 	public static final String NOT_ADDED = "All Employee Details Were Not Added!!";
 	public static final String NOT_DELETED = "All Employee Details Were Not Deleted!!";
+	public static final String NOT_UPDATED = "All Employee Details Were Not Updated!!";
 	public static final String EXCEPTION_MSG = "Something Went Wrong,Details are wrong";
 	public static final String DELETED_SUCCESSFULLY = "All Employee Details Deleted Successfully..";
+	public static final String UPDATED_SUCCESSFULLY = "All Employee Details Updated Successfully..";
 
 }

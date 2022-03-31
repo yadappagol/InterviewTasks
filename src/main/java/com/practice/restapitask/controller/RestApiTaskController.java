@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,6 +70,22 @@ public class RestApiTaskController {
 			return new ResponseEntity<>(responseMessage, HttpStatus.OK);
 		}
 		log.error(Message.NOT_ADDED);
+		throw new InvalidDetailsException(Message.EXCEPTION_MSG);
+	}
+
+	@PutMapping("/updateEmployee")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = Message.UPDATED_SUCCESSFULLY),
+			@ApiResponse(responseCode = "404", description = Message.NOT_ADDED),
+			@ApiResponse(responseCode = "403", description = Message.FORBIDDEN) })
+	public ResponseEntity<ResponseMessage> updateEmployee(@RequestBody @Valid AddEmployeeDto employeeDto) {
+		if (employeeDto != null) {
+			String update = restTaskService.updateUser(employeeDto);
+			log.info(Message.UPDATED_SUCCESSFULLY);
+			ResponseMessage responseMessage = new ResponseMessage(HttpStatus.OK.value(), new java.util.Date(), false,
+					Message.UPDATED_SUCCESSFULLY, update);
+			return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+		}
+		log.error(Message.NOT_UPDATED);
 		throw new InvalidDetailsException(Message.EXCEPTION_MSG);
 	}
 
